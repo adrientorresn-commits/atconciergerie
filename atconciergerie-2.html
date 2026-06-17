@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATConciergerie – Conciergerie Airbnb · Nice, Côte d'Azur</title>
+<meta name="description" content="ATConciergerie par Adrien Torres — service de conciergerie Airbnb premium à Nice. Check-in, check-out, ménage et linge de maison. Disponible 7j/7.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#B8956A;--gold-light:#D4B896;--gold-pale:#F5EDD8;
+  --navy:#0D2236;--cream:#FAFAF7;--white:#FFFFFF;
+  --muted:#7A7A7A;--border:rgba(184,149,106,0.18);--dark:#111111;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--dark);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;transition:all 0.4s}
+nav.scrolled{background:rgba(250,250,247,0.96);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.nav-logo{display:flex;flex-direction:column;line-height:1}
+.nav-logo-main{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:#fff;letter-spacing:0.04em;transition:color 0.4s}
+.nav-logo-sub{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.5);transition:color 0.4s;margin-top:1px}
+nav.scrolled .nav-logo-main{color:var(--navy)}
+nav.scrolled .nav-logo-sub{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.75);transition:color 0.3s}
+nav.scrolled .nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta-btn{border:1px solid rgba(184,149,106,0.6);color:var(--gold)!important;padding:0.5rem 1.4rem;border-radius:2px;font-size:0.73rem!important;letter-spacing:0.12em;transition:all 0.3s!important}
+.nav-cta-btn:hover{background:var(--gold)!important;color:#fff!important}
+
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 40%;background-image:url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?auto=format&fit=crop&w=1920&q=85')}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,34,54,0.92) 0%,rgba(13,34,54,0.35) 55%,rgba(13,34,54,0.1) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 3rem 5rem;max-width:900px}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.hero-line{width:40px;height:1px;background:var(--gold)}
+.hero-eyebrow span{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-desc{font-size:1rem;color:rgba(255,255,255,0.7);font-weight:300;max-width:480px;margin-bottom:2.5rem;line-height:1.8}
+.hero-actions{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.btn-gold{display:inline-flex;align-items:center;gap:0.6rem;background:var(--gold);color:#fff;text-decoration:none;font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:2px;transition:background 0.3s,transform 0.2s}
+.btn-gold:hover{background:#9a7a55;transform:translateY(-2px)}
+.btn-ghost{text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;transition:color 0.3s,border-color 0.3s}
+.btn-ghost:hover{color:#fff;border-color:#fff}
+.hero-scroll{position:absolute;right:3rem;bottom:3rem;display:flex;flex-direction:column;align-items:center;gap:0.75rem;z-index:2}
+.hero-scroll span{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);writing-mode:vertical-rl}
+.scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s infinite}
+@keyframes sp{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.band{background:var(--navy);padding:1rem 3rem;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap}
+.band-item{display:flex;align-items:center;gap:0.65rem;color:rgba(255,255,255,0.55);font-size:0.76rem;letter-spacing:0.07em}
+.band-item svg{color:var(--gold);flex-shrink:0}
+.band-div{width:1px;height:18px;background:rgba(255,255,255,0.1)}
+
+/* PHOTO STRIP — 3 vraies photos côte à côte */
+.strip{display:grid;grid-template-columns:1.6fr 1fr 1fr;height:480px}
+.strip-cell{overflow:hidden;position:relative}
+.strip-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s}
+.strip-cell:hover img{transform:scale(1.04)}
+.strip-cap{position:absolute;bottom:1rem;left:1rem;background:rgba(13,34,54,0.7);backdrop-filter:blur(6px);color:rgba(255,255,255,0.9);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.35rem 0.75rem;border-radius:2px}
+
+section{padding:6rem 3rem}
+.container{max-width:1120px;margin:0 auto}
+.lbl{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.9rem}
+.ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.12;margin-bottom:1rem}
+.sub{font-size:0.95rem;color:var(--muted);font-weight:300;max-width:500px;line-height:1.85}
+
+/* APPART */
+.appart-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.tag{display:inline-flex;align-items:center;background:var(--gold-pale);color:#7a5a3a;font-size:0.74rem;font-weight:500;padding:0.3rem 0.8rem;border-radius:2px;margin:0.2rem}
+.appart-link{display:inline-flex;align-items:center;gap:0.5rem;margin-top:2rem;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px;transition:color 0.2s}
+.appart-link:hover{color:var(--gold)}
+.appart-photos{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.pf{overflow:hidden;border-radius:2px}
+.pf.main{grid-column:1/-1;height:255px}
+.pf.sub{height:170px}
+.pf img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s}
+.pf:hover img{transform:scale(1.04)}
+
+/* SERVICES */
+.svc-section{background:var(--navy)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;margin-top:3.5rem;border:1px solid rgba(184,149,106,0.12)}
+.svc-card{background:rgba(255,255,255,0.03);padding:2.5rem;position:relative;overflow:hidden;transition:background 0.3s}
+.svc-card:hover{background:rgba(184,149,106,0.06)}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity 0.3s}
+.svc-card:hover::before{opacity:1}
+.svc-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(184,149,106,0.1);line-height:1;margin-bottom:0.5rem}
+.svc-card h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:#fff;margin-bottom:0.9rem}
+.svc-card p{font-size:0.9rem;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.9}
+.svc-list{list-style:none;margin-top:1.25rem;display:flex;flex-direction:column;gap:0.5rem}
+.svc-list li{font-size:0.85rem;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:0.6rem}
+.svc-list li::before{content:'';width:18px;height:1px;background:var(--gold);flex-shrink:0}
+
+/* WHY */
+.why-section{background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3.5rem;border:1px solid var(--border)}
+.why-card{padding:2.5rem 2rem;border-right:1px solid var(--border)}
+.why-card:last-child{border-right:none}
+.why-icon{width:44px;height:44px;border:1px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:1.5rem}
+.why-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--navy);margin-bottom:0.6rem}
+.why-card p{font-size:0.88rem;color:var(--muted);font-weight:300;line-height:1.85}
+
+/* PROMENADE SECTION */
+.prom-section{position:relative;height:480px;display:flex;align-items:center;overflow:hidden}
+.prom-bg{position:absolute;inset:0;background-size:cover;background-position:center 55%;
+  /* Photo chaises bleues Promenade des Anglais */
+  background-image:url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=1920&q=85')}
+.prom-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,34,54,0.92) 0%,rgba(13,34,54,0.5) 55%,transparent 100%)}
+.prom-content{position:relative;z-index:2;padding:0 3rem;max-width:560px}
+.prom-content .ttl{color:#fff}
+
+/* HOW */
+.how-section{background:var(--cream)}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:1.75rem;padding-bottom:2.5rem;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:18px;top:44px;bottom:0;width:1px;background:var(--border)}
+.step-num{width:38px;height:38px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--gold);flex-shrink:0;background:var(--cream);position:relative;z-index:1}
+.step h3{font-weight:600;font-size:0.95rem;color:var(--navy);margin-bottom:0.35rem;padding-top:0.5rem}
+.step p{font-size:0.88rem;color:var(--muted);font-weight:300;line-height:1.85}
+.how-img{height:460px;overflow:hidden;border-radius:2px}
+.how-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* CONTACT */
+.contact-section{background:var(--navy)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;margin-top:4rem;align-items:start}
+.c-item{display:flex;align-items:center;gap:1.1rem;padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,0.07);text-decoration:none;transition:padding-left 0.3s}
+.c-item:hover{padding-left:0.5rem}
+.c-icon{width:40px;height:40px;border:1px solid rgba(184,149,106,0.3);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+.c-lbl{font-size:0.64rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.2rem}
+.c-val{font-size:0.95rem;color:rgba(255,255,255,0.85)}
+.fg{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:500}
+.fg input,.fg textarea,.fg select{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:2px;padding:0.85rem 1rem;font-family:'Inter',sans-serif;font-size:0.9rem;color:#fff;outline:none;transition:border-color 0.3s;resize:none}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,0.2)}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold)}
+.fg select option{background:var(--navy)}
+.fg textarea{height:120px}
+.f-btn{width:100%;background:var(--gold);color:#fff;border:none;padding:1.1rem;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:background 0.3s,transform 0.2s;margin-top:0.5rem}
+.f-btn:hover{background:#9a7a55;transform:translateY(-2px)}
+.f-ok{display:none;background:rgba(184,149,106,0.1);border:1px solid rgba(184,149,106,0.3);color:var(--gold);padding:1rem;text-align:center;border-radius:2px;font-size:0.9rem;margin-top:0.5rem}
+
+footer{background:#080F16;padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(184,149,106,0.12)}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.04em}
+.f-logo span{color:var(--gold)}
+footer p{font-size:0.78rem;color:rgba(255,255,255,0.25)}
+
+.fu{opacity:0;transform:translateY(28px);transition:opacity 0.8s,transform 0.8s}
+.fu.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.5rem}
+  .band{padding:1rem 1.5rem;gap:1.5rem}
+  .band-div{display:none}
+  .strip{grid-template-columns:1fr;height:auto}
+  .strip-cell{height:220px}
+  .appart-grid,.svc-grid,.why-grid,.how-grid,.contact-grid{grid-template-columns:1fr}
+  .why-grid{border:none;gap:1rem}
+  .why-card{border:1px solid var(--border);border-radius:2px}
+  .hero-content{padding:0 1.5rem 4rem}
+  .hero-scroll{display:none}
+  .prom-content{padding:0 1.5rem;max-width:100%}
+  .fr{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">
+    <span class="nav-logo-main">AT Conciergerie</span>
+    <span class="nav-logo-sub">Nice · Côte d'Azur</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#appartement">L'appartement</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#comment">Fonctionnement</a></li>
+    <li><a href="#contact" class="nav-cta-btn">Nous contacter</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg" id="hbg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="hero-line"></span><span>Conciergerie Airbnb Premium · Nice</span></div>
+    <h1>Votre appartement,<br><em>une expérience<br>inoubliable.</em></h1>
+    <p class="hero-desc">ATConciergerie prend soin de votre bien et de vos voyageurs — du premier bonjour au dernier au revoir — avec l'élégance que mérite la Côte d'Azur.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold">Réserver un service →</a>
+      <a href="#appartement" class="btn-ghost">Découvrir l'appartement</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="band">
+  <div class="band-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Disponible 7j/7</div>
+  <div class="band-div"></div>
+  <div class="band-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Nice Ouest · Promenade des Anglais</div>
+  <div class="band-div"></div>
+  <div class="band-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4 19.79 19.79 0 0 1 1.62 4.73 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.27a16 16 0 0 0 5.82 5.82l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.46 17z"/></svg>Réponse en moins d'1h</div>
+  <div class="band-div"></div>
+  <div class="band-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Adrien Torres · ERA Immobilier</div>
+</div>
+
+<!-- STRIP 3 PHOTOS — toutes Unsplash libres de droits -->
+<div class="strip">
+  <div class="strip-cell">
+    <img src="https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=1200&q=85" alt="Promenade des Anglais Nice chaises bleues">
+    <span class="strip-cap">Promenade des Anglais</span>
+  </div>
+  <div class="strip-cell">
+    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=85" alt="Appartement moderne rénové">
+    <span class="strip-cap">L'appartement</span>
+  </div>
+  <div class="strip-cell">
+    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=85" alt="Cuisine moderne appartement">
+    <span class="strip-cap">Intérieur rénové</span>
+  </div>
+</div>
+
+<!-- APPARTEMENT -->
+<section style="background:var(--cream)" id="appartement">
+  <div class="container">
+    <div class="appart-grid">
+      <div class="fu">
+        <div class="lbl">L'appartement</div>
+        <h2 class="ttl">Un 3 pièces entièrement rénové,<br>à deux pas de la mer</h2>
+        <p style="font-size:0.95rem;color:var(--muted);font-weight:300;line-height:1.9;margin-bottom:1.5rem">Niché dans une petite copropriété calme de Nice Ouest, à quelques minutes à pied de la célèbre Promenade des Anglais. Tout est neuf, moderne et soigné — avec une terrasse privée pour profiter du soleil niçois.</p>
+        <div>
+          <span class="tag">🌊 Promenade des Anglais à pied</span>
+          <span class="tag">🏠 2 chambres · 2 lits</span>
+          <span class="tag">👥 4 voyageurs max</span>
+          <span class="tag">🪴 Terrasse privée</span>
+          <span class="tag">🅿️ Parking gratuit</span>
+          <span class="tag">📶 Wifi haut débit</span>
+          <span class="tag">🫧 Lave-linge</span>
+          <span class="tag">🚃 Tramway proche</span>
+        </div>
+        <a href="https://www.airbnb.fr/rooms/1707243140656880684" target="_blank" class="appart-link">Voir l'annonce Airbnb →</a>
+      </div>
+      <div class="appart-photos fu">
+        <div class="pf main">
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=85" alt="Salon appartement moderne Nice">
+        </div>
+        <div class="pf sub">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=85" alt="Chambre appartement rénové">
+        </div>
+        <div class="pf sub">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=85" alt="Cuisine équipée moderne">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="svc-section" id="services">
+  <div class="container">
+    <div class="fu">
+      <div class="lbl">Nos prestations</div>
+      <h2 class="ttl" style="color:#fff">Deux services essentiels,<br>exécutés avec soin</h2>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card fu">
+        <div class="svc-num">01</div>
+        <h3>Check-in & Check-out</h3>
+        <p>Un accueil chaleureux et personnalisé pour chaque voyageur. Remise des clés, présentation du logement et départ soigné — à l'heure qui leur convient.</p>
+        <ul class="svc-list">
+          <li>Accueil personnalisé sur place</li>
+          <li>Remise & récupération des clés</li>
+          <li>Horaires flexibles selon les vols</li>
+          <li>État des lieux entrée et sortie</li>
+          <li>Disponible 7 jours sur 7</li>
+        </ul>
+      </div>
+      <div class="svc-card fu">
+        <div class="svc-num">02</div>
+        <h3>Ménage & Linge de maison</h3>
+        <p>Nettoyage professionnel entre chaque séjour, linge de qualité hôtelière. L'appartement toujours impeccable à l'arrivée de vos voyageurs.</p>
+        <ul class="svc-list">
+          <li>Nettoyage complet de l'appartement</li>
+          <li>Draps et serviettes changés</li>
+          <li>Linge lavé, séché et plié</li>
+          <li>Réapprovisionnement des essentiels</li>
+          <li>Photos de contrôle envoyées</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section">
+  <div class="container">
+    <div class="fu" style="text-align:center;max-width:560px;margin:0 auto">
+      <div class="lbl">Pourquoi nous choisir</div>
+      <h2 class="ttl" style="text-align:center">L'expertise locale<br>au service de votre bien</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fu">
+        <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Disponible 7 jours sur 7</h3>
+        <p>Weekends et jours fériés inclus. Vos voyageurs n'attendent pas — et vous non plus.</p>
+      </div>
+      <div class="why-card fu">
+        <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h3>Expert immobilier local</h3>
+        <p>Adrien Torres, conseiller ERA Immobilier Côte d'Azur, maîtrise les standards d'excellence de la French Riviera.</p>
+      </div>
+      <div class="why-card fu">
+        <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Réactivité garantie</h3>
+        <p>Réponse sous 1h, gestion proactive des imprévus. Toujours informé, toujours serein.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMENADE -->
+<div class="prom-section">
+  <div class="prom-bg"></div>
+  <div class="prom-overlay"></div>
+  <div class="prom-content fu">
+    <div class="lbl">Nice · French Riviera</div>
+    <h2 class="ttl" style="font-size:clamp(1.8rem,4vw,3rem)">Les chaises bleues,<br>la Méditerranée,<br><em>et votre tranquillité.</em></h2>
+    <p style="font-size:0.92rem;color:rgba(255,255,255,0.6);margin-top:1rem;font-weight:300;line-height:1.85;max-width:400px">Votre appartement est à quelques pas de l'une des plus belles promenades du monde. ATConciergerie veille à ce que chaque séjour soit à la hauteur de ce cadre exceptionnel.</p>
+  </div>
+</div>
+
+<!-- HOW -->
+<section class="how-section" id="comment">
+  <div class="container">
+    <div class="fu">
+      <div class="lbl">Comment ça marche</div>
+      <h2 class="ttl">Simple, fluide,<br>sans effort de votre part</h2>
+    </div>
+    <div class="how-grid">
+      <div class="steps">
+        <div class="step fu">
+          <div class="step-num">1</div>
+          <div><h3>Vous nous contactez</h3><p>Envoyez-nous les dates d'arrivée et de départ de vos voyageurs par WhatsApp ou via le formulaire.</p></div>
+        </div>
+        <div class="step fu">
+          <div class="step-num">2</div>
+          <div><h3>On organise tout en amont</h3><p>Adrien confirme la prestation, planifie le ménage et prépare un accueil aux petits soins.</p></div>
+        </div>
+        <div class="step fu">
+          <div class="step-num">3</div>
+          <div><h3>Vos voyageurs arrivent et profitent</h3><p>L'appartement est impeccable. Vous recevez une confirmation et des photos après chaque prestation.</p></div>
+        </div>
+      </div>
+      <div class="how-img fu">
+        <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?auto=format&fit=crop&w=900&q=85" alt="Côte d'Azur Nice vue aérienne">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="fu">
+      <div class="lbl">Contact</div>
+      <h2 class="ttl" style="color:#fff">Travaillons ensemble</h2>
+      <p class="sub" style="color:rgba(255,255,255,0.5)">Contactez Adrien directement — réponse garantie sous une heure.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="fu">
+        <a href="https://wa.me/33652740877" target="_blank" class="c-item">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.493a.5.5 0 0 0 .612.612l5.635-1.478A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 0 1-5.031-1.373l-.361-.214-3.741.981.999-3.647-.235-.374A9.862 9.862 0 0 1 2.1 12C2.1 6.533 6.533 2.1 12 2.1c5.468 0 9.9 4.432 9.9 9.9 0 5.467-4.432 9.9-9.9 9.9z"/></svg></div>
+          <div><div class="c-lbl">WhatsApp</div><div class="c-val">06 52 74 08 77</div></div>
+        </a>
+        <a href="mailto:contact@atconciergerie.fr" class="c-item">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="c-lbl">Email</div><div class="c-val">contact@atconciergerie.fr</div></div>
+        </a>
+        <div class="c-item" style="cursor:default">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="c-lbl">Zone d'intervention</div><div class="c-val">Nice & Côte d'Azur</div></div>
+        </div>
+        <div class="c-item" style="cursor:default;border-bottom:none">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="c-lbl">Disponibilité</div><div class="c-val">7 jours sur 7</div></div>
+        </div>
+      </div>
+      <div class="fu">
+        <div class="fr">
+          <div class="fg"><label>Prénom & Nom</label><input type="text" id="fn" placeholder="Jean Dupont"></div>
+          <div class="fg"><label>Email</label><input type="email" id="fe" placeholder="jean@exemple.com"></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label>Date d'arrivée</label><input type="date" id="fa"></div>
+          <div class="fg"><label>Date de départ</label><input type="date" id="fd"></div>
+        </div>
+        <div class="fg">
+          <label>Service souhaité</label>
+          <select id="fs"><option value="">Choisir un service</option><option>Check-in & Check-out</option><option>Ménage & Linge de maison</option><option>Les deux services</option></select>
+        </div>
+        <div class="fg"><label>Message (optionnel)</label><textarea id="fm" placeholder="Heure d'arrivée estimée, informations complémentaires..."></textarea></div>
+        <button class="f-btn" onclick="sub()">Envoyer la demande →</button>
+        <div class="f-ok" id="fok">✓ &nbsp;Merci ! Adrien vous répondra dans l'heure.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">AT<span>Conciergerie</span></div>
+  <p>© 2025 ATConciergerie · Adrien Torres · Nice, Côte d'Azur</p>
+  <p>contact@atconciergerie.fr · 06 52 74 08 77</p>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+  const b=document.getElementById('hbg');
+  if(b&&window.scrollY<window.innerHeight)b.style.transform='translateY('+window.scrollY*0.22+'px)';
+});
+const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ob.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.fu').forEach(el=>ob.observe(el));
+function sub(){
+  if(!document.getElementById('fn').value||!document.getElementById('fe').value){alert('Merci de renseigner votre nom et email.');return;}
+  document.querySelector('.f-btn').style.display='none';
+  document.getElementById('fok').style.display='block';
+}
+</script>
+</body>
+</html>
